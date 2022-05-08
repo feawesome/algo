@@ -79,6 +79,7 @@ class LinkedList {
         }
     }
 
+
     // 尾插法 反转单链表
     reverseList() {
         const root = new Node('head')
@@ -91,6 +92,7 @@ class LinkedList {
         }
         this.head = root
     }
+
 
     //增强尾插法可读性，便于初学者理解
     reverseList1(){
