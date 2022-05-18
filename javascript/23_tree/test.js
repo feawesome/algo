@@ -13,15 +13,15 @@ class Tree {
 
   // 广度优先
   BFS() {
-    let stack = [this.root]
-    while (stack.length) {
-      const node = stack.shift()
+    let quene = [this.root]
+    while (quene.length) {
+      const node = quene.shift()
       console.log(node);
       if (node.left) {
-        stack.push(node.left)
+        quene.push(node.left)
       }
       if (node.right) {
-        stack.push(node.right)
+        quene.push(node.right)
       }
     }
   }

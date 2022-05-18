@@ -29,13 +29,21 @@ class SinglyLinkedList {
   //   this.head = tempNode
   // }
 
+
+
+
+
+
+
   reverseList() {
-    let nextNode = null
-    let head = this.head
+    let currentNode = this.head;
     let tempNode = this.head
-    while (head.next) {
-      nextNode = head.next
-      head.next = nextNode.next
+    let nextNode = null
+
+    while (currentNode.next) {
+      nextNode = currentNode.next // 保存下一个节点
+      currentNode.next = nextNode.next // 删除操作
+
       nextNode.next = tempNode
       tempNode = nextNode
     }
@@ -78,7 +86,7 @@ class SinglyLinkedList {
   }
 
   // 根据值删除
-  remove(element) {
+  remove1(element) {
     let prevNode = this.findPrev(element);
 
     prevNode.next = prevNode.next.next
@@ -91,6 +99,19 @@ class SinglyLinkedList {
     while(currentNode.next) {
       currentNode = currentNode.next
       console.log(currentNode.value);
+    }
+  }
+
+  remove2(item) {
+    let currentNode = this.head;
+    let parentNode = null
+
+    while (currentNode.next) {
+      if (item === currentNode.value) {
+        parentNode.next = currentNode.next
+      }
+      parentNode = currentNode
+      currentNode = currentNode.next
     }
   }
 
@@ -116,7 +137,7 @@ LList.reverseList()
 // console.log(LList.reverseList());
 // console.log(LList.findByValue('3'));
 // LList.insert('2','100')
-// LList.remove('2')
+// LList.remove2('2')
 // console.log(LList.findPrev('3'));
 console.log(LList.head);
 
