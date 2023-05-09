@@ -10,44 +10,51 @@ class SinglyLinkedList {
     this.head = new Node('head')
   }
 
-
-
-
-
-  // reverseList() {
-  //   let nextNode = null; // 当前节点
-  //   const head = this.head; // 遍历用
-  //   let tempNode = this.head; // 新数据用
-
-  //   while (head && head.next) {
-  //     nextNode = head.next; // 保存下一个节点
-  //     head.next = nextNode.next; // 删除源数据的节点
-  //     nextNode.next = tempNode;  // 
-  //     tempNode = nextNode;
-  //     console.log(tempNode);
-  //   }
-  //   this.head = tempNode
-  // }
-
-
-
-
-
-
-
   reverseList() {
-    let currentNode = this.head;
-    let tempNode = this.head
+    let nextNode = null; // 当前节点
+    const head = this.head; // 遍历用
+    let tempNode = this.head; // 新数据用
+
+    while (head && head.next) {
+      nextNode = head.next; // 保存下一个节点
+      head.next = nextNode.next; // 删除源数据的节点
+      nextNode.next = tempNode;  // 
+      tempNode = nextNode;
+      console.log(tempNode);
+    }
+    this.head = tempNode
+  }
+
+
+  reverseList2() {
+
     let nextNode = null
+    let head = this.head
+    let tempNode = this.head
 
-    while (currentNode.next) {
-      nextNode = currentNode.next // 保存下一个节点
-      currentNode.next = nextNode.next // 删除操作
-
+    while(head && head.next) {
+      nextNode = head.next
+      head.next = nextNode.next
       nextNode.next = tempNode
       tempNode = nextNode
     }
-    this.head = tempNode
+
+    console.log(tempNode);
+  }
+
+  reverseList1() {
+    let currentNode = this.head
+    let obj = null
+
+    while (currentNode.next) {
+      obj = {
+        value: currentNode.value,
+        next: obj
+      }
+      currentNode = currentNode.next
+    }
+
+    return obj
   }
 
   findByValue(element) {
@@ -133,12 +140,13 @@ LList.append('1')
 LList.append('2')
 LList.append('3')
 LList.append('4')
-LList.reverseList()
+// console.log(LList.head);
+console.log(LList.reverseList2());
 // console.log(LList.reverseList());
 // console.log(LList.findByValue('3'));
 // LList.insert('2','100')
 // LList.remove2('2')
 // console.log(LList.findPrev('3'));
-console.log(LList.head);
+// console.log(JSON.stringify(LList.head));
 
 // LList.display()
