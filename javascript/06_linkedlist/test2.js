@@ -11,39 +11,46 @@ class SinglyLinkedList {
   }
 
   insert(value) {
-    let current = this.head;
-    while (current.next) {
-      current = current.next;
+    let node = this.head;
+
+    while (node.next) {
+      node = node.next;
     }
-    current.next = new Node(value);
+
+    node.next = new Node(value);
   }
 
   delete(value) {
-    let current = this.head;
+    let node = this.head;
 
-    while (current.next) {
-      if (value === current.next.value) {
-        current.next = current.next.next;
+    while (node.next) {
+      if (value === node.next.value) {
+        break;
+      } else {
+        node = node.next;
       }
-      current = current.next;
     }
+
+    node.next = node.next.next;
   }
 
   revert() {
-    let current = this.head;
     let obj = {
-      value: current.value,
-    };
-
-    while (current.next) {
-      current = current.next;
-      obj = {
-        value: current.value,
-        next: obj,
-      };
+      ...this.head,
+      next: null
     }
 
-    this.head = obj;
+    let node = this.head;
+
+    while (node.next) {
+      obj = {
+        value: node.next.value,
+        next: obj
+      }
+      node = node.next
+    }
+
+    console.log(obj,'222')
   }
 }
 
@@ -54,8 +61,8 @@ list.insert(2);
 list.insert(3);
 list.insert(4);
 list.insert(5);
-// list.revert();
+list.revert();
 
-list.delete(3);
+// list.delete(4);
 
 console.log(list.head);
